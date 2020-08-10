@@ -67,4 +67,16 @@ class ArrayImages extends Field
             'buttonTitle' => $title
         ]);
     }
+
+    /**
+     * Prepare the field for JSON serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'acceptedTypes' => $this->acceptedTypes,
+        ]);
+    }
 }
