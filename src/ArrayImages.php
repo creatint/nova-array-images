@@ -2,16 +2,38 @@
 
 namespace Halimtuhu\ArrayImages;
 
+use Laravel\Nova\Fields\AcceptsTypes;
 use Laravel\Nova\Fields\Field;
 
 class ArrayImages extends Field
 {
+
+    use AcceptsTypes;
+
     /**
      * The field's component.
      *
      * @var string
      */
     public $component = 'array-images';
+
+    /**
+     * Create a new field.
+     *
+     * @param  string  $name
+     * @param  string|null  $attribute
+     * @param  string|null  $disk
+     * @param  callable|null  $storageCallback
+     * @return void
+     */
+    public function __construct($name, $attribute = null, $disk = 'public', $storageCallback = null)
+    {
+        parent::__construct($name, $attribute, $disk, $storageCallback);
+
+        $this->acceptedTypes('image/*');
+        $this->buttonTitle('Upload Image');
+
+    }
 
     /**
      * Specify target disk
@@ -36,6 +58,12 @@ class ArrayImages extends Field
     {
         return $this->withMeta([
             'path' => $path
+        ]);
+    }
+
+    public function buttonTitle($title) {
+        return $this->withMeta([
+            'buttonTitle' => $title
         ]);
     }
 }

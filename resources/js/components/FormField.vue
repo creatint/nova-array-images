@@ -14,12 +14,13 @@
                 ref="add_image"
                 @change="fileSelected"
                 multiple
+                :accept="field.acceptedTypes"
             />
             <button
                 type="button"
                 class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
                 @click="$refs.add_image.click()"
-            >Upload Image</button>
+            >{{ field['buttonTitle'] }}</button>
             <p v-if="hasError" class="my-2 text-danger">
                 {{ firstError }}
             </p>
