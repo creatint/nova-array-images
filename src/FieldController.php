@@ -25,10 +25,11 @@ class FieldController extends BaseController
             $savedImage = Storage::disk($disk)
                 ->putFile($path, $image);
 
-            $data[] = [
-                'image' => $savedImage,
-                'url' => Storage::disk($disk)->url($savedImage),
-            ];
+//            $data[] = [
+//                'image' => $savedImage,
+//                'url' => Storage::disk($disk)->url($savedImage),
+//            ];
+            $data[] = Storage::disk($disk)->url($savedImage);
         }
 
         return $data;
