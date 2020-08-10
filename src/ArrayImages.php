@@ -1,6 +1,8 @@
 <?php
 
-namespace Halimtuhu\ArrayImages;
+
+namespace Creatint\ArrayImages;
+
 
 use Laravel\Nova\Fields\AcceptsTypes;
 use Laravel\Nova\Fields\Field;
@@ -20,10 +22,10 @@ class ArrayImages extends Field
     /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $disk
-     * @param  callable|null  $storageCallback
+     * @param string $name
+     * @param string|null $attribute
+     * @param string|null $disk
+     * @param callable|null $storageCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $disk = 'public', $storageCallback = null)
@@ -62,7 +64,8 @@ class ArrayImages extends Field
         ]);
     }
 
-    public function buttonTitle($title) {
+    public function buttonTitle($title)
+    {
         return $this->withMeta([
             'buttonTitle' => $title
         ]);
@@ -80,3 +83,4 @@ class ArrayImages extends Field
         ]);
     }
 }
+

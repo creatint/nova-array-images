@@ -1,5 +1,5 @@
 {
-    "name": "halimtuhu/array-images",
+    "name": "creatint/array-images",
     "description": "A Laravel Nova field for distribute your images as array of object.",
     "keywords": [
         "laravel",
@@ -13,13 +13,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Halimtuhu\\ArrayImages\\": "src/"
+            "Creatint\\ArrayImages\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Halimtuhu\\ArrayImages\\FieldServiceProvider"
+                "Creatint\\ArrayImages\\FieldServiceProvider"
             ]
         }
     },
