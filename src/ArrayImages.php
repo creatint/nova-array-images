@@ -28,8 +28,9 @@ class ArrayImages extends Field
      */
     public function __construct($name, $attribute = null, $disk = 'public', $storageCallback = null)
     {
-        parent::__construct($name, $attribute, $disk, $storageCallback);
+        parent::__construct($name, $attribute, $storageCallback);
 
+        $this->disk($disk);
         $this->acceptedTypes('image/*');
         $this->buttonTitle('Upload Image');
 
