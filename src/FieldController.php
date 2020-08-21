@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
-$arrayImagesDisk = 'default';
-
 if (!function_exists('getFileUrl')) {
-    function getFileUrl($src) {
-        global $arrayImagesDisk;
-        return Storage::disk($arrayImagesDisk)->url($src);
+    function getFileUrl($src, $disk = 'default') {
+        return Storage::disk($disk)->url($src);
     }
 }
 
@@ -30,16 +27,13 @@ class FieldController extends BaseController
         $images = $request->images;
         $data = array();
 
-        global $arrayImagesDisk;
-        $arrayImagesDisk = $disk;
-
         foreach ($images as $image) {
             $savedImage = Storage::disk($disk)
                 ->putFile($path, $image);
 
             $data[] = [
                 'src' => $savedImage,
-                'url' => getFileUrl($savedImage),
+                'url' => getFileUrl($savedImage, $disk),
             ];
         }
 
@@ -55,12 +49,9 @@ class FieldController extends BaseController
             return [];
         }
 
-        global $arrayImagesDisk;
-        $arrayImagesDisk = $disk;
-
         return array_map(function ($src) use ($disk) {
             if (strpos($src, 'http') !== 0) {
-                return ['src' => $src, 'url' => getFileUrl($src)];
+                return ['src' => $src, 'url' => getFileUrl($src, $disk)];
             }
             return ['src' => $src, 'url' => $src];
         }, $srcs);
